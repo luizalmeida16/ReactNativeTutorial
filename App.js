@@ -16,6 +16,7 @@ import {
   Text,
   useColorScheme,
   View,
+  Image
 } from 'react-native';
 
 import {
@@ -52,6 +53,18 @@ const Section = ({children, title}): Node => {
   );
 };
 
+const sum = (a, b) => {
+  return a + b;
+}
+
+const ShowName = (props) => {
+  return (
+    <View>
+      <Text>This is the name: {props.name}</Text>
+    </View>
+  )
+};
+
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -75,7 +88,12 @@ const App: () => Node = () => {
             screen and then come back to see your edits.
           </Section>
           <Section title="My first change">
-            <Text style={styles.highlight}>Hello World!</Text> This is my first React Native app
+            <Text style={styles.highlight}>Hello World!</Text> This is my first React Native app.
+            Here i'm just checking the usage of a function, in this case SUM:
+            The sum of 1 + 2 = {sum(1,2)}
+          </Section>
+          <Section title="Component props test">
+            <ShowName name="test"/>
           </Section>
           <Section title="See Your Changes">
             <ReloadInstructions />
