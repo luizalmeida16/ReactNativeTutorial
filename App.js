@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -16,7 +16,8 @@ import {
   Text,
   useColorScheme,
   View,
-  Image
+  Image,
+  Button
 } from 'react-native';
 
 import {
@@ -65,6 +66,25 @@ const ShowName = (props) => {
   )
 };
 
+const Car = (props) => {
+  const [needFuel, setNeedFuel] = useState(true);
+
+  return (
+    <View>
+      <Text>
+        The {props.model} {needFuel ? "" : "do not"} need fuel!
+      </Text>
+      <Button
+        onPress={() => {
+          setNeedFuel(false);
+        }}
+        disabled={!needFuel}
+        title={needFuel ? "Fill the car" : "The car is filled"}
+      />
+    </View>
+  );
+}
+
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -94,6 +114,9 @@ const App: () => Node = () => {
           </Section>
           <Section title="Component props test">
             <ShowName name="test"/>
+          </Section>
+          <Section title="State test">
+            <Car model="Porsche"/>
           </Section>
           <Section title="See Your Changes">
             <ReloadInstructions />
